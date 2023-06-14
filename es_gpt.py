@@ -196,7 +196,8 @@ class ESGPT:
                 for hit in es_results:
                     embeddings_dict_list = hit['_source']['embeddings_dict_list']
                     for embeddings_dict in embeddings_dict_list:
-                        df = df.append(embeddings_dict, ignore_index=True)
+                        # df = df.append(embeddings_dict, ignore_index=True) # deprecate
+                        df.loc[len(df)] = embeddings_dict
 
                 context, input_token_len = self._create_context(
                     question=query,
